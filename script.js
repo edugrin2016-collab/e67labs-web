@@ -18,21 +18,23 @@ document.querySelectorAll('.main-nav a, .nav-cta').forEach((link) => {
   });
 });
 
-const contactForm = document.getElementById('contactForm');
-const formNote = document.getElementById('formNote');
+const quoteForm = document.getElementById('quoteForm');
+const quoteFormNote = document.getElementById('quoteFormNote');
 
-contactForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const name = document.getElementById('name').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const company = document.getElementById('company').value.trim();
-  const message = document.getElementById('message').value.trim();
+if (quoteForm) {
+  quoteForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const nombre = document.getElementById('q-nombre').value.trim();
+    const apellido = document.getElementById('q-apellido').value.trim();
+    const direccion = document.getElementById('q-direccion').value.trim();
+    const contacto = document.getElementById('q-contacto').value.trim();
 
-  const subject = encodeURIComponent(`Consulta de ${name}${company ? ' - ' + company : ''}`);
-  const body = encodeURIComponent(
-    `Nombre: ${name}\nEmpresa: ${company || '-'}\nEmail: ${email}\n\nMensaje:\n${message}`
-  );
+    const subject = encodeURIComponent(`Pedido de cotización - ${nombre} ${apellido}`);
+    const body = encodeURIComponent(
+      `Nombre: ${nombre}\nApellido: ${apellido}\nDirección: ${direccion || '-'}\nContacto: ${contacto}`
+    );
 
-  window.location.href = `mailto:contacto@e67labs.com?subject=${subject}&body=${body}`;
-  formNote.textContent = 'Abriendo tu cliente de correo...';
-});
+    window.location.href = `mailto:contacto@e67labs.com?subject=${subject}&body=${body}`;
+    quoteFormNote.textContent = 'Abriendo tu cliente de correo...';
+  });
+}
